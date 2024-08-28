@@ -1,0 +1,7 @@
+name: MashedMC
+version: 1.0.0
+description: Just another minecraft plugin.
+author: Zoxplers
+website: https://zoxplers.com
+main: com.zoxplers.mashed.MashedMC
+api-version: 1.21
