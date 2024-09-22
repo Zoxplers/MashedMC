@@ -33,3 +33,5 @@ Please report bugs at the [issues link](https://github.com/Zoxplers/MashedMC/iss
 
 ## 📝Plans📝
 View the plans for this project at the [project link](https://github.com/users/Zoxplers/projects/2).
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M3HQD82)
