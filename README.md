@@ -28,6 +28,12 @@ Cobblestone generators are no more. This plugin replaces the cobblestone with or
 ### 🪜FastAscend
 This plugin lets player swim up faster. It also allows them to climb ladders/vines faster.
 
+### ⛰️DirtPath
+You can now turn paths into dirt using a shovel. Also used to quickly turn other dirt variants into regular dirt.
+
+### 🪵BarkLogs
+Did you accidentally strip a log? Add the bark back onto stripped logs using an axe.
+
 ## 🐞Issues🐞
 Please report bugs at the [issues link](https://github.com/Zoxplers/MashedMC/issues) above.
 

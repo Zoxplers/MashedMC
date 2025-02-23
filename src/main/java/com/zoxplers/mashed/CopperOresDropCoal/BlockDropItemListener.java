@@ -1,5 +1,6 @@
 package com.zoxplers.mashed.CopperOresDropCoal;
 
+import com.zoxplers.mashed.MashedMC;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
@@ -15,11 +16,14 @@ public class BlockDropItemListener implements Listener
     @EventHandler
     public void onBlockDropItem(BlockDropItemEvent event)
     {
-        Material blockMaterial = event.getBlockState().getType();
-        if((blockMaterial == Material.COPPER_ORE || blockMaterial == Material.DEEPSLATE_COPPER_ORE) && event.getPlayer().getGameMode() == GameMode.SURVIVAL)
+        if(MashedMC.getInstance().getConfig().getBoolean("CopperOresDropCoal"))
         {
-            event.getPlayer().getWorld().dropItemNaturally(event.getBlockState().getLocation(), new ItemStack(Material.COAL, 1 + new Random().nextInt(2)));
-            event.setCancelled(true);
+            Material blockMaterial = event.getBlockState().getType();
+            if((blockMaterial == Material.COPPER_ORE || blockMaterial == Material.DEEPSLATE_COPPER_ORE) && event.getPlayer().getGameMode() == GameMode.SURVIVAL)
+            {
+                event.getPlayer().getWorld().dropItemNaturally(event.getBlockState().getLocation(), new ItemStack(Material.COAL, 1 + new Random().nextInt(2)));
+                event.setCancelled(true);
+            }
         }
     }
 }

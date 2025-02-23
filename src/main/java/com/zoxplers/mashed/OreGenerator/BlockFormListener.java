@@ -1,5 +1,6 @@
 package com.zoxplers.mashed.OreGenerator;
 
+import com.zoxplers.mashed.MashedMC;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,16 +23,19 @@ public class BlockFormListener implements Listener
     @EventHandler
     public void onBlockForm(BlockFormEvent event)
     {
-        if(event.getNewState().getType() == Material.COBBLESTONE)
+        if(MashedMC.getInstance().getConfig().getBoolean("OreGenerator"))
         {
-            event.getNewState().setType(Material.STONE);
-            event.getNewState().update(true);
-        }
+            if(event.getNewState().getType() == Material.COBBLESTONE)
+            {
+                event.getNewState().setType(Material.STONE);
+                event.getNewState().update(true);
+            }
 
-        if(event.getNewState().getType() == Material.STONE)
-        {
-            event.getNewState().setType(getRandomMaterial());
-            event.getNewState().update(true);
+            if(event.getNewState().getType() == Material.STONE)
+            {
+                event.getNewState().setType(getRandomMaterial());
+                event.getNewState().update(true);
+            }
         }
     }
 

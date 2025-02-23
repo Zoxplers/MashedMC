@@ -1,0 +1,11 @@
+# Config Version 1
+AutoHarvest: true
+BarkLogs: true
+BatMembranes: true
+CopperOresDropCoal: true
+DeathCoordinates: true
+DeathCounter: true
+DirtPath: true
+FastAscend: true
+OreGenerator: true
+WoolToString: true

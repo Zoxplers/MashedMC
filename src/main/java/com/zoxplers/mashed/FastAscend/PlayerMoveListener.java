@@ -1,5 +1,6 @@
 package com.zoxplers.mashed.FastAscend;
 
+import com.zoxplers.mashed.MashedMC;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,10 +27,13 @@ public class PlayerMoveListener implements Listener
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event)
     {
-        Player player = event.getPlayer();
-        if(player.getLocation().getPitch() < CLIMB_PITCH && event.getTo().getY()-event.getFrom().getY() > 0.1 && ascendables.contains(player.getLocation().add(0,1.1,0).getBlock().getType()))
+        if(MashedMC.getInstance().getConfig().getBoolean("FastAscend"))
         {
-            player.setVelocity(player.getVelocity().clone().setY(CLIMB_SPEED));
+            Player player = event.getPlayer();
+            if(player.getLocation().getPitch() < CLIMB_PITCH && event.getTo().getY()-event.getFrom().getY() > 0.1 && ascendables.contains(player.getLocation().add(0,1.1,0).getBlock().getType()))
+            {
+                player.setVelocity(player.getVelocity().clone().setY(CLIMB_SPEED));
+            }
         }
     }
 }

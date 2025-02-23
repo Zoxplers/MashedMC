@@ -25,7 +25,7 @@ public class DeathCounter
         enabled = true;
         filePath = MashedMC.getInstance().getDataFolder() + File.separator + "deaths";
         MashedMC plugin = MashedMC.getInstance();
-        plugin.getServer().getPluginManager().registerEvents(new DeathCounterListeners(), plugin);
+        plugin.getServer().getPluginManager().registerEvents(new PlayerDeathListener(), plugin);
     }
 
     public void disable()
@@ -48,14 +48,13 @@ public class DeathCounter
 
             if(file.exists())
             {
-                try
+                if(file.renameTo(new File(MashedMC.getInstance().getDataFolder() + File.separator + "deaths.old")))
                 {
-                    file.renameTo(new File(MashedMC.getInstance().getDataFolder() + File.separator + "deaths.old"));
                     file = new File(filePath);
                 }
-                catch (Exception e)
+                else
                 {
-                    MashedMC.log("Error trying to save deaths.old: ", MashedMC.translate(e.getMessage()));
+                    MashedMC.log("Error trying to save deaths.old");
                 }
             }
 

@@ -13,10 +13,15 @@ public class PlayerDeathListener implements Listener
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event)
     {
-        Player player = event.getEntity();
-        Location eyeLocation = player.getEyeLocation();
-
-        player.sendMessage(MashedMC.translate(MashedMC.PRIMARY + "You died at X = " + MashedMC.SECONDARY + eyeLocation.getBlockX() + MashedMC.PRIMARY + ", Y = " + MashedMC.SECONDARY + eyeLocation.getBlockY() + MashedMC.PRIMARY + ", Z = " + MashedMC.SECONDARY + eyeLocation.getBlockZ()));
-        MashedMC.log(MashedMC.translate(MashedMC.SECONDARY + player.getDisplayName() + MashedMC.PRIMARY + " died at X = " + MashedMC.SECONDARY + eyeLocation.getBlockX() + MashedMC.PRIMARY + ", Y = " + MashedMC.SECONDARY + eyeLocation.getBlockY() + MashedMC.PRIMARY + ", Z = " + MashedMC.SECONDARY + eyeLocation.getBlockZ()));
+        if(MashedMC.getInstance().getConfig().getBoolean("DeathCoordinates"))
+        {
+            Player player = event.getEntity();
+            Location eyeLocation = player.getEyeLocation();
+            if(eyeLocation.getWorld() != null)
+            {
+                player.sendMessage(MashedMC.translate(MashedMC.PRIMARY + "You died at [" + MashedMC.SECONDARY + eyeLocation.getWorld().getName() + MashedMC.PRIMARY + "] X = " + MashedMC.SECONDARY + eyeLocation.getBlockX() + MashedMC.PRIMARY + ", Y = " + MashedMC.SECONDARY + eyeLocation.getBlockY() + MashedMC.PRIMARY + ", Z = " + MashedMC.SECONDARY + eyeLocation.getBlockZ()));
+            }
+            MashedMC.log(MashedMC.translate(MashedMC.SECONDARY + player.getDisplayName() + MashedMC.PRIMARY + " died at X = " + MashedMC.SECONDARY + eyeLocation.getBlockX() + MashedMC.PRIMARY + ", Y = " + MashedMC.SECONDARY + eyeLocation.getBlockY() + MashedMC.PRIMARY + ", Z = " + MashedMC.SECONDARY + eyeLocation.getBlockZ()));
+        }
     }
 }

@@ -9,6 +9,7 @@ import org.bukkit.inventory.ShapelessRecipe;
 
 public class WoolToString
 {
+    //Add config handler!!!
     //Variables
     private boolean enabled;
 

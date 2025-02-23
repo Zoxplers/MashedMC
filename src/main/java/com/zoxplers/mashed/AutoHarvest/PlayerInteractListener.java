@@ -1,5 +1,6 @@
 package com.zoxplers.mashed.AutoHarvest;
 
+import com.zoxplers.mashed.MashedMC;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
@@ -30,15 +31,18 @@ public class PlayerInteractListener implements Listener
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event)
     {
-        Block block = event.getClickedBlock();
-
-        if(block != null && event.getAction() == Action.RIGHT_CLICK_BLOCK && replant.contains(block.getType()))
+        if(MashedMC.getInstance().getConfig().getBoolean("AutoHarvest"))
         {
-            Ageable ageable = (Ageable)block.getBlockData();
-            if(ageable.getAge() == ageable.getMaximumAge() && block.breakNaturally(event.getPlayer().getInventory().getItemInMainHand()))
+            Block block = event.getClickedBlock();
+
+            if (block != null && event.getAction() == Action.RIGHT_CLICK_BLOCK && replant.contains(block.getType()))
             {
-                ageable.setAge(0);
-                event.getClickedBlock().setBlockData(ageable);
+                Ageable ageable = (Ageable) block.getBlockData();
+                if (ageable.getAge() == ageable.getMaximumAge() && block.breakNaturally(event.getPlayer().getInventory().getItemInMainHand()))
+                {
+                    ageable.setAge(0);
+                    event.getClickedBlock().setBlockData(ageable);
+                }
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.zoxplers.mashed.BatMembranes;
 
+import com.zoxplers.mashed.MashedMC;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Bat;
@@ -17,15 +18,18 @@ public class EntityDeathListener implements Listener
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event)
     {
-        if(event.getEntity() instanceof Bat)
+        if(MashedMC.getInstance().getConfig().getBoolean("BatMembranes"))
         {
-            ItemStack membranes = new ItemStack(Material.PHANTOM_MEMBRANE, 1 + new Random().nextInt(2));
-            ItemMeta membranesMeta = membranes.getItemMeta();
-            assert membranesMeta != null;
-            membranesMeta.setDisplayName(ChatColor.RESET + "Bat Membrane");
-            membranes.setItemMeta(membranesMeta);
+            if(event.getEntity() instanceof Bat)
+            {
+                ItemStack membranes = new ItemStack(Material.PHANTOM_MEMBRANE, 1 + new Random().nextInt(2));
+                ItemMeta membranesMeta = membranes.getItemMeta();
+                assert membranesMeta != null;
+                membranesMeta.setDisplayName(ChatColor.RESET + "Bat Membrane");
+                membranes.setItemMeta(membranesMeta);
 
-            event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), membranes);
+                event.getEntity().getWorld().dropItemNaturally(event.getEntity().getLocation(), membranes);
+            }
         }
     }
 }
